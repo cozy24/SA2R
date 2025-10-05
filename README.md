@@ -15,7 +15,7 @@ Overview of eight datasets used in our experiments. The table shows the number o
 | YelpChi       | 23,831 (1,217)   | 5.1%          | R--U--R                         | 98,630                        | 32         |
 | T-Finance     | 39,357 (1,803)   | 4.6%          | -                               | 42,484,443                    | 10         |
 | Elliptic      | 203,769 (4,545)  | 2.2%          | -                               | 234,355                       | 166        |
-| DGraph-Fin    | 3,700,550 (15,509)| 0.42%       | -                               | 4,300,999                     | 17         |
+| DGraph-Fin    | 3,700,550 (15,509)| 0.4%       | -                               | 4,300,999                     | 17         |
 | Amazon-Full   | 11,944 (821)     | 6.9%          | U--P--U, U--S--U, U--V--U       | 351,216, 7,132,958, 2,073,474| 25         |
 | YelpChi-Full  | 45,954 (6,677)   | 14.5%         | R--S--R, R--T--R, R--U--R       | 6,805,486, 1,147,232, 98,630 | 32         |
 
