@@ -20,8 +20,8 @@ Overview of eight datasets used in our experiments. The table shows the number o
 | YelpChi-Full  | 45,954 (6,677)   | 14.5%         | R--S--R, R--T--R, R--U--R       | 6,805,486, 1,147,232, 98,630 | 32         |
 
 **Note on dataset access:**  
+- T-Finance can be downloaded following [BWGNN](https://github.com/squareRoot3/Rethinking-Anomaly-Detection).
 - Elliptic and DGraph-Fin datasets are downloaded and preprocessed following [GADBench](https://github.com/squareRoot3/GADBench).  
-- Amazon-Full and YelpChi-Full datasets can be downloaded automatically via the code.
 
 ---
 
