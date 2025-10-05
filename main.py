@@ -32,20 +32,19 @@ import time
 # 参数解析
 parser = argparse.ArgumentParser(description='UGAD')
 parser.add_argument('--print_results', type=utils.str2bool, default=True)
-parser.add_argument('--expr_name', type=str, default="None")
 parser.add_argument('--dataset', type=str, default='YelpChi')
 parser.add_argument('--lr', type=float, default=1e-2)
 parser.add_argument('--weight_decay', type=float, default=0.0)
 parser.add_argument('--seed', type=int, default=42)
-parser.add_argument('--batch_size_sampling', type=int, default=819200)
+parser.add_argument('--batch_size_sampling', type=int, default=262144)
 parser.add_argument('--hidden', type=int, default=128)
 parser.add_argument('--order', type=int, default=2)
 parser.add_argument('--run', type=int, default=1)
 parser.add_argument('--epoch', type=int, default=300)
 parser.add_argument('--patience', type=int, default=20)
-parser.add_argument('--std', type=str, default="false")
+parser.add_argument('--eval_epoch', type=int, default=10)
 parser.add_argument("--gpu", type=int, default=0, help="GPU id to use, e.g. --gpu 0")
-
+parser.add_argument("--lamda", type=float, default=1, help="weight of noise mse")
 
 args = parser.parse_args()
 
@@ -138,7 +137,7 @@ for run in range(num_runs):
     results_loss_rec = []
     results_loss = []
     pbar = tqdm(total=epochs, desc=args.dataset)
-    train_total_sec = 0
+    
     # 每次运行用不同种子（如 args.seed + run_idx，确保种子不重复）
     # current_seed = args.seed + run_idx
     # utils.set_random_seeds(current_seed)
@@ -150,7 +149,7 @@ for run in range(num_runs):
         shuffle=True,
         drop_last=False,
         num_workers=0)
-
+    train_total_sec = 0
     # 初始化模型
     model_GAD = model.HUGE(features.shape[1], args.hidden, args.order).cuda()
     optimizer = torch.optim.Adam(model_GAD.parameters(), lr=args.lr, weight_decay=args.weight_decay)
@@ -217,7 +216,7 @@ for run in range(num_runs):
         # 评估：使用视角差异作为异常分数
         time_eval_start = datetime.datetime.now()
         # 初始化三个列表来保存不同评分
-        if (epoch + 1) % 10 == 0:
+        if (epoch + 1) % args.eval_epoch == 0:
             with torch.no_grad():
                 model_GAD.eval()
                 # print('*********************Test***************************')
@@ -277,7 +276,7 @@ for run in range(num_runs):
                 all_diffusion_sim = diffusion_sim_t.mean(dim=1)
 
                 # 如果不指定权重，就是均等加和
-                all_fused_score = all_reconstruction_mse + all_contrast_mse + all_diffusion_mse
+                all_fused_score = all_reconstruction_mse + all_contrast_mse + args.lamda * all_diffusion_mse
 
                 # —— 报告函数 ——  
                 def _to_numpy(x):
@@ -353,24 +352,24 @@ for run in range(num_runs):
     all_results_list.append(results_dict)
     results.append(run_log)
 # ====== 统计 ======
-# all_times = [t for r in results for t in r["epoch_times"]]
-# all_mems = [m for r in results for m in r["peak_memory"]]
+all_times = [t for r in results for t in r["epoch_times"]]
+all_mems = [m for r in results for m in r["peak_memory"]]
 
-# stats = {
-#     "time_mean": float(np.mean(all_times)),
-#     "time_var": float(np.var(all_times)),
-#     "mem_mean": float(np.mean(all_mems)),
-#     "mem_var": float(np.var(all_mems)),
-# }
+stats = {
+    "time_mean": float(np.mean(all_times)),
+    "time_var": float(np.var(all_times)),
+    "mem_mean": float(np.mean(all_mems)),
+    "mem_var": float(np.var(all_mems)),
+}
 
-# output = {"stats": stats, "runs": results}
+output = {"stats": stats, "runs": results, "all_results_list": all_results_list, "all_best_results_list": all_best_results_list}
 
 # 保存结果
-# with open(save_file, "w") as f:
-#     json.dump(output, f, indent=2)
+with open(save_file, "w") as f:
+    json.dump(output, f, indent=2)
 
-# print(f"\nResults saved to {save_file}")
-# print("Statistics:", stats)
+print(f"\nResults saved to {save_file}")
+print("Statistics:", stats)
 
 best_auc_vals = [d["auc"] for d in all_best_results_list]
 best_aupr_vals = [d["auprc"] for d in all_best_results_list]
