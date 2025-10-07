@@ -21,7 +21,7 @@ Overview of eight datasets used in our experiments. The table shows the number o
 
 **Note on dataset access:**  
 - T-Finance can be downloaded following [BWGNN](https://github.com/squareRoot3/Rethinking-Anomaly-Detection).
-- Elliptic and DGraph-Fin datasets are downloaded and preprocessed following [GADBench](https://github.com/squareRoot3/GADBench).  
+- Elliptic and DGraph-Fin datasets can be downloaded and preprocessed following [GADBench](https://github.com/squareRoot3/GADBench).  
 
 ---
 
