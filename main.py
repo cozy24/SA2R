@@ -151,7 +151,7 @@ for run in range(num_runs):
         num_workers=0)
     train_total_sec = 0
     # 初始化模型
-    model_GAD = model.HUGE(features.shape[1], args.hidden, args.order).cuda()
+    model_GAD = model.AND_ONE(features.shape[1], args.hidden, args.order).cuda()
     optimizer = torch.optim.Adam(model_GAD.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     model_GAD.train()
     for epoch in range(epochs):
