@@ -482,7 +482,7 @@ class DiffusionModel(nn.Module):
             "noise": noise,
         }
 
-class HUGE(nn.Module):
+class AND_ONE(nn.Module):
     def __init__(self, n_in, n_h, d, num_heads=4, timesteps=1000, batch_size=8192):
         super().__init__()
         self.act = nn.PReLU()
