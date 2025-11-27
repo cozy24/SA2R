@@ -54,13 +54,13 @@ To train AND-ONE on a specific dataset, use the following command:
 
 python run.py --dataset <DATASET> --lr <LEARNING_RATE> --hidden <HIDDEN_DIM> --epoch <NUM_EPOCHS> --gpu <GPU_ID>
 
-| Dataset Flag            | Description                                                            |
-| ----------------------- | ---------------------------------------------------------------------- |
-| `--dataset yelp`        | Multi-relational YelpChi-Full dataset.                                 |
-| `--dataset amazon`      | Multi-relational Amazon-Full dataset.                                  |
-| `--dataset YelpChiFull` | Convert YelpChi-Full into a homogeneous graph (all edge types merged). |
-| `--dataset AmazonFull`  | Convert Amazon-Full into a homogeneous graph (all edge types merged).  |
-| `--dataset weibo`       |                                                                        |
-| `--dataset elliptic`    |                                                                        |
-| `--dataset tfinance`    |                                                                        |
-| `--dataset dgraphfin`   |                                                                        |
+| Dataset Flag            | 
+| ----------------------- | 
+| `--dataset yelp`        | 
+| `--dataset amazon`      |
+| `--dataset YelpChiFull` | 
+| `--dataset AmazonFull`  |  
+| `--dataset weibo`       |                   
+| `--dataset elliptic`    |                                                           
+| `--dataset tfinance`    |                                                                   
+| `--dataset dgraphfin`   |                                                                 
