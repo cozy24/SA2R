@@ -49,13 +49,15 @@ To train AND-ONE on a specific dataset, use the following command:
 
 python run.py --dataset <DATASET> --hidden <HIDDEN_DIM> --alpha <ALPHA>
 
-| Dataset Flag            | 
+| Dataset                 | Description |
 | ----------------------- | 
-| `--dataset yelp`        | 
-| `--dataset amazon`      |
-| `--dataset YelpChiFull` | 
-| `--dataset AmazonFull`  |  
-| `--dataset weibo`       |                   
-| `--dataset elliptic`    |                                                           
-| `--dataset tfinance`    |                                                                   
-| `--dataset dgraphfin`   |                                                                 
+| `--dataset YelpChi`     | for YelpChi
+| `--dataset Amazon`      | for Amazon
+| `--dataset yelp`        | for YelpChi-Full
+| `--dataset amazon`      | for Amazon-Full
+| `--dataset YelpChiFull` | for YelpChi-Full(homo)
+| `--dataset AmazonFull`  | for Amazon-Full(homo)
+| `--dataset weibo`       | for Weibo                  
+| `--dataset elliptic`    | for Elliptic                                                         
+| `--dataset tfinance`    | for T-Finance                                                                  
+| `--dataset dgraphfin`   | for DGraph-Fin                                                                
