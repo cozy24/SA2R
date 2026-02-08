@@ -124,7 +124,6 @@ for run in range(num_runs):
                 num_t = 5  
                 t_values = torch.linspace(200, 300, num_t, dtype=torch.long, device=device)
                 model_GAD.eval()
-                print('-------------------Test--------------------------')
 
                 N = graph.num_nodes()
 
