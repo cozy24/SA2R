@@ -132,7 +132,6 @@ for run in range(num_runs):
                 all_noise_mse = torch.zeros(N, device=device)
                 all_contrast_mse = torch.zeros(N, device=device)
                 all_fused_score = torch.zeros(N, device=device)
-                # 存储每个 t 下的分数，用于后续求均值
                 noise_mse_t = torch.zeros(N, num_t, device=device)
                 h_str_full = torch.zeros(N, args.hidden, device=device)
                 h_att_full = torch.zeros(N, args.hidden, device=device)
@@ -223,9 +222,9 @@ for run in range(num_runs):
 summary_results     = compute_summary(all_runs_results)
 summary_best        = compute_summary(all_runs_best_results)
 
-print(f"\n🏆 Average Results over {len(all_runs_best_results)} runs:")
-print(f"   - AUROC   : {summary_best['average_auroc']:.4f}")
-print(f"   - AUPRC : {summary_best['average_auprc']:.4f}")
+print(f"Average Results over {len(all_runs_best_results)} runs:")
+print(f"- AUROC   : {summary_best['average_auroc']:.4f}")
+print(f"- AUPRC : {summary_best['average_auprc']:.4f}")
 
 if args.run == 10:
     dataset_dir = os.path.join("results", args.dataset)
@@ -246,4 +245,4 @@ if args.run == 10:
     with open(summary_file, "w") as f:
         json.dump(summary, f, indent=4)
 
-    print(f"\n✅ Saved all runs (results + best results) summary to {summary_file}")
+    print(f"Saved all runs (results + best results) summary to {summary_file}")
