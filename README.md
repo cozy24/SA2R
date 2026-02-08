@@ -6,9 +6,7 @@ AND-ONE is a self-supervised framework that jointly exploits structural, attribu
 
 ## Datasets
 
-Overview of eight datasets used in our experiments. The table shows the number of nodes (and anomalies), anomaly ratio, number of relations, number of edges, and number of attributes for each dataset.
-
-| Dataset       | Nodes      | Anomaly Ratio | Relations                       | Edges                         | Attributes |
+| Dataset       | Nodes      | Anomaly Ratio | Edge  Types                     | Edges                         | Dim        |
 |---------------|------------|---------------|---------------------------------|-------------------------------|------------|
 | Weibo         | 8,405      | 10.3%         | -                               | 815,926                       | 400        |
 | Amazon        | 10,224     | 6.8%          | U--P--U                         | 351,216                       | 25         |
@@ -30,7 +28,7 @@ Overview of eight datasets used in our experiments. The table shows the number o
 Key parameters for running AND-ONE:
 
 | Parameter               | Type    | Default   | Description |
-|-------------------------|--------|-----------|-------------|
+|-------------------------|--------|-----------|--------------|
 | `dataset`               | str    | 'YelpChi' | Dataset name to use |
 | `lr`                    | float  | 0.01      | Learning rate for optimizer |
 | `weight_decay`          | float  | 0.0       | Weight decay for optimizer |
