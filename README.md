@@ -47,17 +47,19 @@ Key parameters for running AND-ONE:
 
 To train AND-ONE on a specific dataset, use the following command:
 
-python run.py --dataset <DATASET> --hidden <HIDDEN_DIM> --alpha <ALPHA>
+python main.py --dataset <DATASET> --hidden <HIDDEN_DIM> --alpha <ALPHA>
 
-| Dataset                 | Description |
-| ----------------------- | 
-| `--dataset YelpChi`     | for YelpChi
-| `--dataset Amazon`      | for Amazon
-| `--dataset yelp`        | for YelpChi-Full
-| `--dataset amazon`      | for Amazon-Full
-| `--dataset YelpChiFull` | for YelpChi-Full(homo)
-| `--dataset AmazonFull`  | for Amazon-Full(homo)
-| `--dataset weibo`       | for Weibo                  
-| `--dataset elliptic`    | for Elliptic                                                         
-| `--dataset tfinance`    | for T-Finance                                                                  
-| `--dataset dgraphfin`   | for DGraph-Fin                                                                
+| Dataset                 | Description             |
+| ----------------------- | ------------------------|
+| `--dataset YelpChi`     | for YelpChi             |
+| `--dataset Amazon`      | for Amazon              |
+| `--dataset yelp`        | for YelpChi-Full        |
+| `--dataset amazon`      | for Amazon-Full         |
+| `--dataset YelpChiFull` | for YelpChi-Full(homo)  |
+| `--dataset AmazonFull`  | for Amazon-Full(homo)   |
+| `--dataset weibo`       | for Weibo               |  
+| `--dataset elliptic`    | for Elliptic            |                                             
+| `--dataset tfinance`    | for T-Finance           |                                                       
+| `--dataset dgraphfin`   | for DGraph-Fin          | 
+
+---
