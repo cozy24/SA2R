@@ -1,6 +1,6 @@
 # AND-ONE
 
-AND-ONE is a self-supervised framework that jointly exploits structural, attribute, and perturbation signals for multi-relational graph anomaly detection.
+AND-ONE is a self-supervised framework that jointly exploits structural, attribute, and perturbation signals for label-free graph anomaly detection.
 
 ---
 
@@ -31,20 +31,17 @@ Key parameters for running AND-ONE:
 
 | Parameter               | Type    | Default   | Description |
 |-------------------------|--------|-----------|-------------|
-| `print_results`         | bool   | True      | Whether to print graph info |
 | `dataset`               | str    | 'YelpChi' | Dataset name to use |
 | `lr`                    | float  | 0.01      | Learning rate for optimizer |
 | `weight_decay`          | float  | 0.0       | Weight decay for optimizer |
 | `seed`                  | int    | 42        | Random seed for reproducibility |
-| `batch_size_sampling`   | int    | 262144    | Batch size used during neighbor sampling |
 | `hidden`                | int    | 128       | Hidden dimension size for embeddings |
 | `order`                 | int    | 2         | Order of spectral filter in the model |
 | `run`                   | int    | 1         | Run number (for multiple trials) |
 | `epoch`                 | int    | 300       | Number of training epochs |
 | `patience`              | int    | 20        | Early stopping patience |
-| `eval_epoch`            | int    | 10        | Evaluate the model every n epochs |
 | `gpu`                   | int    | 0         | GPU id to use |
-| `lamda`                 | float  | 1         | Weight of noise MSE loss |
+| `alpha`                 | float  | 0.6       | Weight of r(ctr) |
 
 ---
 
@@ -52,7 +49,7 @@ Key parameters for running AND-ONE:
 
 To train AND-ONE on a specific dataset, use the following command:
 
-python run.py --dataset <DATASET> --lr <LEARNING_RATE> --hidden <HIDDEN_DIM> --epoch <NUM_EPOCHS> --gpu <GPU_ID>
+python run.py --dataset <DATASET> --hidden <HIDDEN_DIM> --alpha <ALPHA>
 
 | Dataset Flag            | 
 | ----------------------- | 
