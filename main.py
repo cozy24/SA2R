@@ -26,23 +26,19 @@ parser.add_argument('--std', type=int, default=1)
 parser.add_argument("--gpu", type=int, default=0, help="GPU id to use, e.g. --gpu 0")
 parser.add_argument("--order", type=int, default=2)
 parser.add_argument("--run", type=int, default=1)
-parser.add_argument('--alpha', type=float, default=0.25)
+parser.add_argument('--alpha', type=float, default=0.6)
 parser.add_argument('--w1', type=float, default=1.0)
 parser.add_argument('--w2', type=float, default=1.0)
 parser.add_argument('--w3', type=float, default=1.0)
 
 args = parser.parse_args()
-# 设置随机种子
 utils.set_random_seeds(args.seed)
 
-# 加载数据
 graph, features, ano_label = utils.load_dataset(args.dataset, normalize=args.std, to_bidirected=True)
 
-# 处理图结构
-graph.ndata['features'] = features  # 取节点特征
+graph.ndata['features'] = features 
 graph.ndata['label'] = ano_label
 
-# 设置CUDA
 device = torch.device(f"cuda:{args.gpu}" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
@@ -51,7 +47,7 @@ if len(ano_label) > 1e6:
     batch_size = 8192 * 16
 else:
     batch_size = len(ano_label)
-# 批采样
+
 sampler = dgl.dataloading.MultiLayerFullNeighborSampler(1)
 dataloader = dgl.dataloading.DataLoader(
     graph, torch.arange(graph.num_nodes()), sampler,
@@ -64,21 +60,19 @@ all_runs_best_results = []
 all_runs_results = []
 
 for run in range(num_runs):
-    # 初始化模型
     
     model_GAD = model.AND_ONE(graph.ndata['features'].shape[1], args.hidden, args.order, label=graph.ndata["label"], w1=args.w1, w2=args.w2, w3=args.w3).to(device)
     optimizer = torch.optim.Adam(model_GAD.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     epoch_times = []
 
     torch.cuda.reset_peak_memory_stats(device)
-    # 训练
+ 
     epochs = args.epoch
     results_loss_rec = []
     results_loss = []
     pbar = tqdm(total=epochs, desc=args.dataset)
     train_total_sec = 0
 
-    # 早停相关参数
     patience = args.patience 
     best_loss = float('inf')
     counter = 0 
@@ -97,7 +91,6 @@ for run in range(num_runs):
             dst_n = block.num_dst_nodes()
             dst_idx = torch.arange(block.num_dst_nodes())
 
-            # 前向
             out = model_GAD.forward(blocks, feat_src)
             loss = out['loss']
             loss.backward()
@@ -109,7 +102,6 @@ for run in range(num_runs):
         epoch_loss /= graph.num_nodes()
         results_loss.append(epoch_loss)
 
-        # 早停逻辑
         if epoch_loss < best_loss:
             best_loss = epoch_loss
             counter = 0
@@ -129,14 +121,13 @@ for run in range(num_runs):
             
             with torch.no_grad():
                 start = time.time()
-                num_t = 5  # 多个 t 值
+                num_t = 5  
                 t_values = torch.linspace(200, 300, num_t, dtype=torch.long, device=device)
                 model_GAD.eval()
                 print('-------------------Test--------------------------')
 
                 N = graph.num_nodes()
 
-                # —— 初始化所有异常评分缓存 —— 
                 all_reconstruction_mse = torch.zeros(N, device=device)
                 all_noise_mse = torch.zeros(N, device=device)
                 all_contrast_mse = torch.zeros(N, device=device)
@@ -180,7 +171,6 @@ for run in range(num_runs):
                     feat_full[output_nodes] = feat_dst
                     rec_feat_full[output_nodes] = reconstructed_feat
 
-                # —— 对所有 t 的分数取均值作为最终异常分数 ——  
                 all_noise_mse = noise_mse_t.mean(dim=1)
                 rec_rank = to_rank_score(all_reconstruction_mse)
                 con_rank = to_rank_score(all_contrast_mse)
@@ -192,7 +182,6 @@ for run in range(num_runs):
                     ( 1- args.alpha) / 2 * dif_rank
                 )
 
-                # —— 保存文件夹 ——  
                 os.makedirs("results", exist_ok=True)
                 results_dict = {}
                 auroc, auprc = report("Fused", all_fused_score, results_dict, ano_label)
@@ -231,7 +220,6 @@ for run in range(num_runs):
     all_runs_best_results.append(best_result) 
     all_runs_results.append(result) 
 
-# 分别计算两类统计信息
 summary_results     = compute_summary(all_runs_results)
 summary_best        = compute_summary(all_runs_best_results)
 
@@ -240,7 +228,6 @@ print(f"   - AUROC   : {summary_best['average_auroc']:.4f}")
 print(f"   - AUPRC : {summary_best['average_auprc']:.4f}")
 
 if args.run == 10:
-    # ---- 保存到文件 ----
     dataset_dir = os.path.join("results", args.dataset)
     os.makedirs(dataset_dir, exist_ok=True)
 
