@@ -1,6 +1,3 @@
-# AND-ONE
-
-AND-ONE is a self-supervised framework that jointly exploits structural, attribute, and perturbation signals for label-free graph anomaly detection.
 
 ---
 
@@ -45,7 +42,7 @@ Key parameters for running AND-ONE:
 
 ## Running AND-ONE
 
-To train AND-ONE on a specific dataset, use the following command:
+To train model on a specific dataset, use the following command:
 
 python main.py --dataset <DATASET> --hidden <HIDDEN_DIM> --alpha <ALPHA>
 
