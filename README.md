@@ -40,8 +40,6 @@ Key parameters for running AND-ONE:
 
 ---
 
-## Running AND-ONE
-
 To train model on a specific dataset, use the following command:
 
 python main.py --dataset <DATASET> --hidden <HIDDEN_DIM> --alpha <ALPHA>
