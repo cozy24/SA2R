@@ -22,8 +22,6 @@
 
 ## Parameters
 
-Key parameters for running AND-ONE:
-
 | Parameter               | Type    | Default   | Description |
 |-------------------------|--------|-----------|--------------|
 | `dataset`               | str    | 'YelpChi' | Dataset name to use |
@@ -36,9 +34,23 @@ Key parameters for running AND-ONE:
 | `epoch`                 | int    | 300       | Number of training epochs |
 | `patience`              | int    | 20        | Early stopping patience |
 | `gpu`                   | int    | 0         | GPU id to use |
-| `alpha`                 | float  | 0.6       | Weight of r(ctr) |
+| `alpha`                 | float  | 0.5       | Weight of r(ctr) |
 
 ---
+## Configurations：
+
+| Dataset | Source | Hidden | Alpha | Epoch | Runs | AUROC | AUPRC |
+|---|---|---:|---:|---:|---:|---:|---:|
+| Aamzon-Full(homo) | beta | 64 | 0.60 | 70 | 10/10 | 0.9305 ± 0.0070 | 0.7551 ± 0.0351 |
+| Amazon | hidden | 64 | 0.60 | 80 | 10/10 | 0.9324 ± 0.0040 | 0.7544 ± 0.0183 |
+| Amazon-Full | hidden | 128 | 0.50 | 70 | 10/10 | 0.9356 ± 0.0056 | 0.7790 ± 0.0132 |
+| DGraph-Fin | beta | 64 | 0.90 | 20 | 10/10 | 0.6648 ± 0.0121 | 0.0202 ± 0.0010 |
+| Elliptic | hidden | 128 | 0.60 | 20 | 10/10 | 0.7259 ± 0.0209 | 0.1902 ± 0.0072 |
+| T-Finance | beta | 64 | 0.90 | 10 | 10/10 | 0.8522 ± 0.0069 | 0.6231 ± 0.0122 |
+| Weibo | beta | 64 | 0.90 | 10 | 10/10 | 0.9269 ± 0.0011 | 0.8108 ± 0.0056 |
+| YelpChi | hidden | 128 | 0.60 | 240 | 10/10 | 0.7395 ± 0.0158 | 0.1324 ± 0.0089 |
+| YelpChi-Full | hidden | 128 | 0.50 | 190 | 10/10 | 0.6591 ± 0.0121 | 0.2416 ± 0.0110 |
+| YelpChi-Full(homo) | beta | 64 | 0.30 | 170 | 10/10 | 0.6208 ± 0.0058 | 0.2188 ± 0.0080 |
 
 To train model on a specific dataset, use the following command:
 
