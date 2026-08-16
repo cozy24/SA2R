@@ -1,18 +1,20 @@
+# SA2R requirements
+#
 # Tested environment:
-# Python 3.8.20
-# CUDA 11.7
+# Python 3.12.3
+# CUDA 13.0
+# PyTorch build: 2.8.0a0+34c6371d24.nvInternal
 
-# Deep learning
-torch==2.0.1
-torch-geometric==2.3.1
-dgl==0.9.1
+# Deep learning and graph learning
+torch>=2.8.0a0,<2.9.0
+dgl==2.5
 
 # Scientific computing
-numpy==1.23.5
-scipy==1.9.3
-scikit-learn==1.3.0
-sympy==1.13.0
+numpy==1.26.4
+scipy==1.15.3
+scikit-learn==1.6.1
+sympy==1.14.0
 
 # Utilities
-matplotlib==3.7.5
-tqdm==4.64.1
+matplotlib==3.10.3
+tqdm==4.67.1
