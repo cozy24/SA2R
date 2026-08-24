@@ -28,13 +28,13 @@
 | `lr`                    | float  | 0.01      | Learning rate for optimizer |
 | `weight_decay`          | float  | 0.0       | Weight decay for optimizer |
 | `seed`                  | int    | 42        | Random seed for reproducibility |
-| `hidden`                | int    | 128       | Hidden dimension size for embeddings |
+| `hidden`                | int    | 64       | Hidden dimension size for embeddings |
 | `order`                 | int    | 2         | Order of spectral filter in the model |
 | `run`                   | int    | 1         | Run number (for multiple trials) |
 | `epoch`                 | int    | 300       | Number of training epochs |
-| `patience`              | int    | 20        | Early stopping patience |
+| `patience`              | int    | 30        | Early stopping patience |
 | `gpu`                   | int    | 0         | GPU id to use |
-| `alpha`                 | float  | 0.5       | Weight of r(ctr) |
+| `alpha`                 | float  | 0.6       | Weight of r(ctr) |
 
 ---
 ## Configurations：
