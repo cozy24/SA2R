@@ -35,22 +35,6 @@
 | `gpu`                   | int    | 0         | GPU id to use |
 | `alpha`                 | float  | 0.6       | Weight of r(ctr) |
 
----
-## Configurations：
-
-| Dataset | Hidden | Alpha | AUROC | AUPRC |
-|---|---:|---:|---:|---:|
-| Aamzon-Full(homo) | 64 | 0.60 |  0.9305 ± 0.0070 | 0.7551 ± 0.0351 |
-| Amazon | 64 | 0.60 |  0.9324 ± 0.0040 | 0.7544 ± 0.0183 |
-| Amazon-Full | 128 | 0.50 |  0.9356 ± 0.0056 | 0.7790 ± 0.0132 |
-| DGraph-Fin | 64 | 0.90 |  0.6648 ± 0.0121 | 0.0202 ± 0.0010 |
-| Elliptic | 128 | 0.60 | 0.7259 ± 0.0209 | 0.1902 ± 0.0072 |
-| T-Finance | 64 | 0.90 | 0.8522 ± 0.0069 | 0.6231 ± 0.0122 |
-| Weibo | 64 | 0.90 | 0.9269 ± 0.0011 | 0.8108 ± 0.0056 |
-| YelpChi | 128 | 0.60 |  0.7395 ± 0.0158 | 0.1324 ± 0.0089 |
-| YelpChi-Full | 128 | 0.50 |  0.6591 ± 0.0121 | 0.2416 ± 0.0110 |
-| YelpChi-Full(homo) | 64 | 0.30 |  0.6208 ± 0.0058 | 0.2188 ± 0.0080 |
-
 To train model on a specific dataset, use the following command:
 
 python main.py --dataset <DATASET> --hidden <HIDDEN_DIM> --alpha <ALPHA>
