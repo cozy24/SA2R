@@ -1,26 +1,5 @@
 
 ---
-##  Requirements
-Python 3.12.3
-
-CUDA 13.0
-
-torch==2.8.0
-
-dgl==2.5
-
-numpy==1.26.4
-
-scipy==1.15.3
-
-scikit-learn==1.6.1
-
-sympy==1.14.0
-
-matplotlib==3.10.3
-
-tqdm==4.67.1
-
 ## Datasets
 
 | Dataset       | Nodes      | Anomaly Ratio | Edge  Types                     | Edges                         | Dim        |
