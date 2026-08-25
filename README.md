@@ -1,5 +1,24 @@
 
 ---
+## Environment Requirements
+
+SA2R has been tested with the following environment:
+
+| Software | Version |
+|----------|---------|
+| Python | 3.12.3 |
+| CUDA | 13.0 |
+| PyTorch | 2.8.0 |
+| DGL | 2.5 |
+| NumPy | 1.26.4 |
+| SciPy | 1.15.3 |
+| Scikit-learn | 1.6.1 |
+| SymPy | 1.14.0 |
+| Matplotlib | 3.10.3 |
+| tqdm | 4.67.1 |
+
+The required Python packages are provided in `requirements.txt`
+
 ## Datasets
 
 | Dataset       | Nodes      | Anomaly Ratio | Edge  Types                     | Edges                         | Dim        |
@@ -35,6 +54,7 @@
 | `gpu`                   | int    | 0         | GPU id to use |
 | `alpha`                 | float  | 0.6       | Weight of r(ctr) |
 
+## Train Model
 To train model on a specific dataset, use the following command:
 
 python main.py --dataset Amazon --hidden 64 --alpha 0.6
