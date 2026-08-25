@@ -23,8 +23,8 @@ parser.add_argument('--lr', type=float, default=1e-2)
 parser.add_argument('--weight_decay', type=float, default=1e-4)
 parser.add_argument('--seed', type=int, default=42)
 parser.add_argument('--hidden', type=int, default=64)
-parser.add_argument('--patience', type=int, default=20)
-parser.add_argument('--epoch', type=int, default=200)
+parser.add_argument('--patience', type=int, default=30)
+parser.add_argument('--epoch', type=int, default=300)
 parser.add_argument('--std', type=int, default=1)
 parser.add_argument("--gpu", type=int, default=0, help="GPU id to use, e.g. --gpu 0")
 parser.add_argument("--order", type=int, default=2)
@@ -45,10 +45,7 @@ graph.ndata['label'] = ano_label
 device = torch.device(f"cuda:{args.gpu}" if torch.cuda.is_available() else "cpu")
 
 hidden_dim = args.hidden
-if len(ano_label) > 1e6:
-    batch_size = 8192 * 16
-else:
-    batch_size = len(ano_label)
+batch_size = len(ano_label)
 
 sampler = dgl.dataloading.MultiLayerFullNeighborSampler(1)
 dataloader = dgl.dataloading.DataLoader(
