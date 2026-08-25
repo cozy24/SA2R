@@ -23,7 +23,7 @@
 
 | Parameter               | Type    | Default   | Description |
 |-------------------------|--------|-----------|--------------|
-| `dataset`               | str    | 'YelpChi' | Dataset name to use |
+| `dataset`               | str    | 'Amazon' | Dataset name to use |
 | `lr`                    | float  | 0.01      | Learning rate for optimizer |
 | `weight_decay`          | float  | 0.0       | Weight decay for optimizer |
 | `seed`                  | int    | 42        | Random seed for reproducibility |
@@ -37,19 +37,19 @@
 
 To train model on a specific dataset, use the following command:
 
-python main.py --dataset <DATASET> --hidden <HIDDEN_DIM> --alpha <ALPHA>
+python main.py --dataset Amazon --hidden 64 --alpha 0.6
 
 | Dataset                 | Description             |
 | ----------------------- | ------------------------|
-| `--dataset YelpChi`     | for YelpChi             |
 | `--dataset Amazon`      | for Amazon              |
-| `--dataset yelp`        | for YelpChi-Full        |
+| `--dataset YelpChi`     | for YelpChi             |
 | `--dataset amazon`      | for Amazon-Full         |
-| `--dataset YelpChiFull` | for YelpChi-Full(homo)  |
+| `--dataset yelp`        | for YelpChi-Full        |
 | `--dataset AmazonFull`  | for Amazon-Full(homo)   |
+| `--dataset YelpChiFull` | for YelpChi-Full(homo)  |
 | `--dataset weibo`       | for Weibo               |  
-| `--dataset elliptic`    | for Elliptic            |                                             
-| `--dataset tfinance`    | for T-Finance           |                                                       
+| `--dataset tfinance`    | for T-Finance           |  
+| `--dataset elliptic`    | for Elliptic            |                                                                                                 
 | `--dataset dgraphfin`   | for DGraph-Fin          | 
 
 ---
