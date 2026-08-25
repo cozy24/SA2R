@@ -414,7 +414,7 @@ class PANPModel(nn.Module):
             "noise": noise,
         }
 
-class AND_ONE(nn.Module):
+class Model(nn.Module):
     def __init__(self, n_in, n_h, d, label, w1, w2, w3, timesteps=1000, batch_size=8192):
         super().__init__()
         self.act = nn.PReLU()
