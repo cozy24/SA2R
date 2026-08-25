@@ -6,7 +6,7 @@
 # PyTorch build: 2.8.0a0+34c6371d24.nvInternal
 
 # Deep learning and graph learning
-torch>=2.8.0a0,<2.9.0
+torch==2.8.0
 dgl==2.5
 
 # Scientific computing
