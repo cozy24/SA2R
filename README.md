@@ -38,13 +38,12 @@ The required Python packages are provided in `requirements.txt`
 
 ---
 
-## Parameters
+## Key Parameters
 
 | Parameter               | Type    | Default   | Description |
 |-------------------------|--------|-----------|--------------|
 | `dataset`               | str    | 'Amazon' | Dataset name to use |
 | `lr`                    | float  | 0.01      | Learning rate for optimizer |
-| `weight_decay`          | float  | 0.0       | Weight decay for optimizer |
 | `seed`                  | int    | 42        | Random seed for reproducibility |
 | `hidden`                | int    | 64       | Hidden dimension size for embeddings |
 | `order`                 | int    | 2         | Order of spectral filter in the model |
