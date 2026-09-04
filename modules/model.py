@@ -439,8 +439,15 @@ class Model(nn.Module):
         neg_scores = []
 
         for _ in range(k):
-            perm = torch.randperm(batch_size, device=device)
-            h2_neg = h2[perm]
+            offset = torch.randint(
+                1, batch_size,
+                (batch_size,),
+                device=device
+            )
+            idx = (
+                torch.arange(batch_size, device=device) + offset
+            ) % batch_size
+            h2_neg = h2[idx]
             neg_score = torch.sum(h1 * h2_neg, dim=1, keepdim=True) / temperature  
             neg_scores.append(neg_score)
 
